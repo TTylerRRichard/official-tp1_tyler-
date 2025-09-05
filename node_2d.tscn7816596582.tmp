@@ -23,6 +23,22 @@ distance = -85.1381
 scale = Vector2(0.964588, 0.986632)
 script = SubResource("GDScript_0e48y")
 
+[node name="Button" type="Button" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 324.491
+offset_top = 139.87
+offset_right = 512.491
+offset_bottom = 226.87
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(2.01361, 1.60583)
+text = "jump
+"
+
 [node name="click" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("2_0hol4")
 
@@ -55,5 +71,7 @@ position = Vector2(853.214, 219.94)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
 shape = SubResource("WorldBoundaryShape2D_epypp")
 
+[connection signal="mouse_entered" from="Button" to="." method="_on_button_mouse_entered"]
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
 [connection signal="pressed" from="Button2" to="." method="_on_button_2_pressed"]
 [connection signal="mouse_entered" from="player" to="player" method="_on_mouse_entered"]
