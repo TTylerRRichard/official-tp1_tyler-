@@ -11,6 +11,7 @@ config_version=5
 [application]
 
 config/name="Official-tp1_Tyler+"
+run/main_scene="uid://cps30omc0e3s3"
 config/features=PackedStringArray("4.4", "GL Compatibility")
 config/icon="res://icon.svg"
 

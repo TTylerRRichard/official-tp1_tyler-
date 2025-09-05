@@ -1,32 +1,77 @@
-[gd_scene load_steps=4 format=3 uid="uid://b7cqmnmejqk3t"]
+[gd_scene load_steps=7 format=3 uid="uid://cps30omc0e3s3"]
 
-[ext_resource type="Script" uid="uid://sao030eakdf3" path="res://node_2d.gd" id="1_epypp"]
 [ext_resource type="AudioStream" uid="uid://cuaq38lcloo7n" path="res://assets/audio/retro-jump-3-236683.mp3" id="2_0hol4"]
 [ext_resource type="AudioStream" uid="uid://c2s3cely1pgup" path="res://assets/audio/cartoon-142268.mp3" id="3_q6r6c"]
+[ext_resource type="PackedScene" uid="uid://b7hmyyb8n7vuq" path="res://player.tscn" id="4_0hol4"]
+[ext_resource type="Script" uid="uid://cuckw6dgf0se0" path="res://player.gd" id="5_q6r6c"]
 
-[node name="Node2D" type="Node2D"]
-script = ExtResource("1_epypp")
+[sub_resource type="GDScript" id="GDScript_0e48y"]
+script/source = "extends Node2D
+
+
+func _on_button_pressed() -> void:
+	$click.play()
+
+func _on_button_2_pressed() -> void:
+	$Button2/music.play()
+"
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_epypp"]
+distance = -85.1381
+
+[node name="game" type="Node2D"]
+scale = Vector2(0.964588, 0.986632)
+script = SubResource("GDScript_0e48y")
 
 [node name="Button" type="Button" parent="."]
-offset_left = 154.0
-offset_top = 209.0
-offset_right = 342.0
-offset_bottom = 296.0
-text = "click"
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 324.491
+offset_top = 139.87
+offset_right = 512.491
+offset_bottom = 226.87
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(2.01361, 1.60583)
+text = "jump
+"
 
 [node name="click" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("2_0hol4")
 
 [node name="Button2" type="Button" parent="."]
-offset_left = 583.0
-offset_top = 215.0
-offset_right = 771.0
-offset_bottom = 303.0
-text = "click"
+offset_left = 327.601
+offset_top = 333.458
+offset_right = 515.601
+offset_bottom = 421.458
+scale = Vector2(1.97393, 1.58943)
+text = "music
+"
+metadata/_edit_use_anchors_ = true
 
 [node name="music" type="AudioStreamPlayer" parent="Button2"]
 stream = ExtResource("3_q6r6c")
 
+[node name="click2" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_0hol4")
+
+[node name="player" parent="." instance=ExtResource("4_0hol4")]
+position = Vector2(849.067, 269.604)
+script = ExtResource("5_q6r6c")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(601.293, 327.376)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+position = Vector2(853.214, 219.94)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+shape = SubResource("WorldBoundaryShape2D_epypp")
+
 [connection signal="mouse_entered" from="Button" to="." method="_on_button_mouse_entered"]
 [connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
 [connection signal="pressed" from="Button2" to="." method="_on_button_2_pressed"]
+[connection signal="mouse_entered" from="player" to="player" method="_on_mouse_entered"]
