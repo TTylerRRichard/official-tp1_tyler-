@@ -12,8 +12,17 @@ script/source = "extends Node2D
 func _on_button_pressed() -> void:
 	$click.play()
 
+var is_colored := false
+
 func _on_button_2_pressed() -> void:
 	$Button2/music.play()
+	
+	if is_colored:
+		$Button2.modulate = Color(1, 1, 1)  
+	else:
+		$Button2.modulate = Color(0.8, 0.2, 0.2)  
+
+	is_colored = not is_colored
 "
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_epypp"]
